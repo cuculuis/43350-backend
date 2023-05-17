@@ -1,1 +1,47 @@
-[{"title":"Pera","description":"Fruta Pomacea","price":100,"thumbnail":"pera.jpg","code":"123456","stock":30,"id":2},{"title":"Limon","description":"Fruta cítrica","price":50,"thumbnail":"pera.jpg","code":"654321","stock":35,"id":3},{"title":"Papita","description":"Verdura","price":30,"thumbnail":"papita.jpg","code":"555101","stock":100,"id":4}]
+[
+  {
+    "title": "Pera",
+    "description": "Fruta Pomacea",
+    "price": 100,
+    "thumbnail": "pera.jpg",
+    "code": "123456",
+    "stock": 30,
+    "id": 1
+  },
+  {
+    "title": "Zanahoria",
+    "description": "Verdura",
+    "price": 80,
+    "thumbnail": "zanahoria.jpg",
+    "code": "789101",
+    "stock": 60,
+    "id": 2
+  },
+  {
+    "title": "Papita",
+    "description": "Verdura",
+    "price": 30,
+    "thumbnail": "papita.jpg",
+    "code": "555101",
+    "stock": 100,
+    "id": 3
+  },
+  {
+    "title": "Melon",
+    "description": "Fruta trópical",
+    "price": 30,
+    "thumbnail": "melon.jpg",
+    "code": "465783",
+    "stock": 60,
+    "id": 4
+  },
+  {
+    "title": "Frutilla",
+    "description": "Fruta fria",
+    "price": 30,
+    "thumbnail": "frutilla.jpg",
+    "code": "000123",
+    "stock": 200,
+    "id": 5
+  }
+]

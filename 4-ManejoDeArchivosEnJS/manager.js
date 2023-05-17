@@ -19,87 +19,41 @@ class ProductManager {
         }
     }
 
-    // async validateProduct(title, description, price, thumbnail, code, stock) {
-    //     await this.checkFileExists()
-    //     try {
-    //         if (!title || !description || !price || !thumbnail || !code || !stock) {
-    //             return this.error = `campos incompletos`
-    //         } else {
-    //             const allProducts = await this.getProducts()
-    //             const found = await allProducts.find(product => product.code === code)
-    //             if (found) {return this.error = `El code: ${code} ya existe`}
-    //             else {return this.error = undefined}
-    //         }
-    //     } catch (error) {
-    //         console.log("Hubo un error: " + error);
-    //     }
-    // }
+    validateProduct(title, description, price, thumbnail, code, stock) {
+        if (!title || !description || !price || !thumbnail || !code || !stock) 
+        {
+        return this.error = `campos incompletos`
+        }
+    }
 
-    async validateTitle(title) {
-        if (!title) {
-            console.log(`El campo title es obligatorio`)
-            return false
-        }
-    }
-    
-    async validateDescription(description) {
-        if (!description) {
-            console.log(`El campo description es obligatorio`);
-            return false
-        }
-    }
-    
-    async validatePrice(price) {
-        if (!price) {
-            console.log(`El campo price es obligatorio`);
-            return false
-        }
-    }
-    
-    async validateThumbnail(thumbnail) {
-        if (!thumbnail) {
-            console.log(`El campo thumbnail es obligatorio`)
-            return false
-        }
-    }
-    
-    async validateCode(code) {
-        if (!code) {
-            console.log(`El campo code es obligatorio`);
-            return false;
-        }
-        const allProducts = await this.getProducts();
-        const found = allProducts.find(product => product.code === code);
-        if (found) {
-            console.log(`El code: ${code} ya existe`)
+    async checkCodeExists(code) {
+        const products = await this.getProducts();
+        const existingProduct = products.find(product => product.code === code);
+        if (existingProduct) {
+            console.log(`El código ${code} ya existe`);
             return false;
         }
         return true;
     }
-    
-    async validateStock(stock) {
-        if (!stock) {
-            console.log(`El campo stock es obligatorio`)
-            return false
-        } 
-    }
-
 
     async addProduct(newProduct) {
         await this.checkFileExists()
         try {
             let allProducts = await this.getProducts();
 
-            if (!this.validateTitle(newProduct.title) || !this.validateDescription(newProduct.description) || !this.validatePrice(newProduct.price) || !this.validateThumbnail(newProduct.thumbnail) || !this.validateStock(newProduct.stock)) {
+            if  (this.validateProduct(newProduct.title, newProduct.description, newProduct.price, newProduct.thumbnail, newProduct.code, newProduct.stock)) {
                 return `Faltan campos`
-            } 
+            }
+            
+            if (!await this.checkCodeExists(newProduct.code)) {
+                return `No se puede agregar el producto. Code: ${code} duplicado`
+            }
             newProduct.id = this.idProducts;
             allProducts.push(newProduct);
             this.idProducts++;
             await fs.promises.writeFile(this.path, JSON.stringify(allProducts, null, 2));
             
             return newProduct.id;
-
         } catch (err) {
             console.log('Hubo un error: ' + err);
         }
@@ -141,7 +95,7 @@ class ProductManager {
 
             allProducts[index] = {...productNow, id: idProduct}
             await fs.promises.writeFile(this.path, JSON.stringify(allProducts, null, 2));
-            return allProducts[index];
+            return `Se actualizó el producto con id: ${idProduct}`;
         } catch (err) {
             console.log('Hubo un error: ' + err);
         }
@@ -172,48 +126,53 @@ class ProductManager {
 
 const productmanager = new ProductManager("./products.txt")
 
-const obj1 = {title: "Mango", description: "Fruta tropical", price: 200, thumbnail: "mango.jpg", code: "123456", stock: 50}
+//Falta title
+const obj1 = {description: "Fruta tropical", price: 200, thumbnail: "mango.jpg", code: "123456", stock: 50}
 const obj2 = {title: "Pera", description: "Fruta Pomacea", price: 100, thumbnail: "pera.jpg", code: "123456", stock: 30}
-const obj3 = {title: "Limon", description: "Fruta cítrica", price: 50, thumbnail: "pera.jpg", code: "654321", stock: 35}
+//Mismo code que Pera, no se va a agregar.
+const obj3 = {title: "Limon", description: "Fruta cítrica", price: 50, thumbnail: "pera.jpg", code: "123456", stock: 35}
+
 const obj4 = {title: "Zanahoria", description: "Verdura", price: 80, thumbnail: "zanahoria.jpg", code: "789101", stock: 60}
 const obj5 = {title: "Papita", description: "Verdura", price: 30, thumbnail: "papita.jpg", code: "555101", stock: 100}
+const obj6 = {title: "Naranja", description: "Fruta cítrica", price: 30, thumbnail: "naranja.jpg", code: "888923", stock: 10}
+const obj7 = {title: "Frutilla", description: "Fruta fria", price: 30, thumbnail: "frutilla.jpg", code: "000123", stock: 200}
+const obj8 = {title: "Melon", description: "Fruta trópical", price: 30, thumbnail: "melon.jpg", code: "465783", stock: 60}
 
 
 const test = async () => {
 
     console.log('/-------------------------------------/');
     console.log('/--1) Primer llamado de getProducts--/');
-    console.log('/-----------------------------------/');
     console.log(await productmanager.getProducts());
 
-    console.log(await productmanager.addProduct(obj1))
-
     console.log('/---------------------------------------------------------/');
-    console.log('/--No se agrega Pera porque tiene un code igual a Mango--/');
-    console.log('/-------------------------------------------------------/');
+    console.log('/--No se agrega porque le falta "title"--/');
+    console.log(await productmanager.addProduct(obj1))
+    
     console.log(await productmanager.addProduct(obj2))
 
+    console.log('/---------------------------------------------------------/');
+    console.log('/--No se agrega "Limon" porque tiene el mismo code que "Pera"--/');
     console.log(await productmanager.addProduct(obj3))
-
     console.log(await productmanager.addProduct(obj4))
+    console.log(await productmanager.addProduct(obj5))
+    console.log(await productmanager.addProduct(obj6))
+    console.log(await productmanager.addProduct(obj7))
 
     console.log('/------------------------------------------/');
     console.log('/--2) Llamado de getProducts 2do intento--/');
-    console.log('/----------------------------------------/');
     console.log(await productmanager.getProducts());
 
     console.log('/--------------------------------/');
     console.log('/--3) Llamado de getProductById--/');
-    console.log('/--------------------------------/');
 
     console.log('/--------------------------------------/');
     console.log('/--a) Llamado de getProductById id 1--/');
-    console.log('/------------------------------------/');
     console.log(await productmanager.getProductById(1));
     console.log('/-----------------------------------------------------------/');
-    console.log('/--3) Llamado de getProductById id 5 (Producto no existe)--/');
+    console.log('/--3) Llamado de getProductById id 6 (Producto no existe)--/');
     console.log('/-----------------------------------------------------------/');
-    console.log(await productmanager.getProductById(5));
+    console.log(await productmanager.getProductById(6));
     console.log('/--------------------------------------/');
     console.log('/--3) Llamado de getProductById id 3--/');
     console.log('/------------------------------------/');
@@ -230,13 +189,16 @@ const test = async () => {
     console.log("-----------------------------------------------------");
     
     console.log("Prueba de updateProduct");
-    console.log(await productmanager.updateProduct(4, obj5));
-    console.log("Ahora en el id 4 está 'papita'");
+    console.log(await productmanager.updateProduct(4, obj8));
+    console.log("-----------------------------------------------------");
+    console.log("Ahora en el id 4 está 'Melon'");
     console.log("-----------------------------------------------------");
     console.log(await productmanager.getProductById(4));
     
     console.log("-----------------------------------------------------");
     
+    //Estan comentados los métodos delete porque me borran los datos del txt entonces no puedo testear correctamente, los demas metodos, si quieres testear deleteById y deleteAll, solo descomentalos :D. 
+
     // console.log("Prueba de deleteById");
     // console.log(await productmanager.deleteProductById(1));
     // console.log("Ahora en el id 1 no hay producto");
