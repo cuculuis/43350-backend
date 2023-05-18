@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Mango",
+    "description": "Fruta tropical",
+    "price": 200,
+    "thumbnail": "mango.jpg",
+    "code": "123456",
+    "stock": 50,
+    "id": 1
+  },
+  {
+    "title": "Pera",
+    "description": "Fruta Pomacea",
+    "price": 100,
+    "thumbnail": "pera.jpg",
+    "code": "560231",
+    "stock": 30,
+    "id": 2
+  },
+  {
+    "title": "Limon",
+    "description": "Fruta cítrica",
+    "price": 50,
+    "thumbnail": "pera.jpg",
+    "code": "777666",
+    "stock": 35,
+    "id": 3
+  },
+  {
+    "title": "Zanahoria",
+    "description": "Verdura",
+    "price": 80,
+    "thumbnail": "zanahoria.jpg",
+    "code": "789101",
+    "stock": 60,
+    "id": 4
+  },
+  {
+    "title": "Papita",
+    "description": "Verdura",
+    "price": 30,
+    "thumbnail": "papita.jpg",
+    "code": "555101",
+    "stock": 100,
+    "id": 5
+  },
+  {
+    "title": "Naranja",
+    "description": "Fruta cítrica",
+    "price": 10,
+    "thumbnail": "naranja.jpg",
+    "code": "888923",
+    "stock": 10,
+    "id": 6
+  },
+  {
+    "title": "Frutilla",
+    "description": "Fruta fria",
+    "price": 200,
+    "thumbnail": "frutilla.jpg",
+    "code": "000123",
+    "stock": 200,
+    "id": 7
+  },
+  {
+    "title": "Melon",
+    "description": "Fruta trópical",
+    "price": 80,
+    "thumbnail": "melon.jpg",
+    "code": "465783",
+    "stock": 10,
+    "id": 8
+  },
+  {
+    "title": "Zapallo",
+    "description": "Verdura",
+    "price": 150,
+    "thumbnail": "zapallo.jpg",
+    "code": "000555",
+    "stock": 50,
+    "id": 9
+  },
+  {
+    "title": "Lechuga",
+    "description": "Verdura",
+    "price": 90,
+    "thumbnail": "lechuga.jpg",
+    "code": "400111",
+    "stock": 70,
+    "id": 10
+  }
+]
