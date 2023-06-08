@@ -1,1 +1,67 @@
-[]
+[
+    {
+      "title": "Manzana",
+      "description": "Fruta tropical",
+      "code": "123manzana",
+      "price": 200,
+      "status": true,
+      "stock": 10,
+      "category": "Fruta",
+      "thumbnail": [
+        "https://cdn.iconscout.com/icon/free/png-256/free-apple-fruit-food-vitamin-healthy-31182.png"
+      ],
+      "id": 1
+    },
+    {
+      "title": "Banana",
+      "description": "Fruta tropical",
+      "code": "123Banana",
+      "price": 200,
+      "status": true,
+      "stock": 10,
+      "category": "Fruta",
+      "thumbnail": [
+        "https://cdn.iconscout.com/icon/free/png-256/free-banana-fruit-food-plantains-healthy-31180.png"
+      ],
+      "id": 2
+    },
+    {
+      "title": "Naranja",
+      "description": "Fruta tropical",
+      "code": "123naranja",
+      "price": 300,
+      "status": true,
+      "stock": 10,
+      "category": "Fruta",
+      "thumbnail": [
+        "https://cdn.iconscout.com/icon/free/png-256/free-orange-fruit-vitamin-healthy-citrus-31186.png"
+      ],
+      "id": 3
+    },
+    {
+      "title": "Mango",
+      "description": "Fruta tropical",
+      "code": "123Mango",
+      "price": 500,
+      "status": true,
+      "stock": 10,
+      "category": "Fruta",
+      "thumbnail": [
+        "https://cdn.iconscout.com/icon/free/png-256/free-mango-fruit-vitamin-healthy-summer-food-31184.png"
+      ],
+      "id": 4
+    },
+    {
+      "title": "Fresa",
+      "description": "Fruta tropical",
+      "code": "123fresa",
+      "price": 80,
+      "status": true,
+      "category": "Fruta",
+      "thumbnail": [
+        "https://cdn.iconscout.com/icon/free/png-256/free-strawberry-fruit-vitamin-healthy-sweet-31190.png"
+      ],
+      "stock": 60,
+      "id": 5
+    }
+]

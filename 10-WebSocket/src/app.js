@@ -25,13 +25,11 @@ app.get('/products', async (req, res) => {
 
 
 
-const server = app.listen(PORT, () => {
-    console.log('Servidor escuchando en el: ' + PORT);
-})
-const io = new Server(server)
+const serverHttp = app.listen(PORT, () => {console.log('Servidor escuchando en el: ' + PORT);})
+const io = new Server(serverHttp)
 
-io.on("connection", async (socket) => {
-    console.log('Se conectó un nuevo usuario');
+io.on('connection', (socket) => {
+    console.log('A new user connected');
 
     socket.emit("products", products);
 
